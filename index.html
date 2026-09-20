@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BusTrack</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="app-header">
+    <h1>🚌 BusTrack</h1>
+    <p><span class="live-dot"></span> Smart Transit • Real-Time Occupancy Monitoring</p>
+</header>
+
+<div class="bus-selection">
+
+    <div class="section-title">
+        <span>AVAILABLE ROUTES</span>
+        <h2>Select Your Bus</h2>
+    </div>
+
+    <div class="bus-options">
+
+        <button id="bus1" onclick="selectBus(1)">
+            <div class="bus-number">218</div>
+            <div class="bus-route">Hyderabad → Sangareddy</div>
+            <div class="bus-action">View Bus →</div>
+        </button>
+
+        <button id="bus2" onclick="selectBus(2)">
+            <div class="bus-number">219</div>
+            <div class="bus-route">Patancheru → Hyderabad</div>
+            <div class="bus-action">View Bus →</div>
+        </button>
+
+        <button id="bus3" onclick="selectBus(3)">
+            <div class="bus-number">220</div>
+            <div class="bus-route">Sangareddy → BHEL</div>
+            <div class="bus-action">View Bus →</div>
+        </button>
+
+    </div>
+
+</div>
+
+
+    <div class="bus-card">
+
+        <div class="route-info">
+
+    <div class="section-heading">
+    <div>
+        <span>LIVE BUS</span>
+        <h2>🚌 Bus Details</h2>
+    </div>
+</div>
+
+    <p class="info">🔢 Bus Number: <span id="busNumber">218</span></p>
+<div class="route">
+    <div>
+        <span class="route-label">FROM</span>
+        <strong id="from">Hyderabad</strong>
+    </div>
+
+    <span class="arrow">→</span>
+
+    <div>
+        <span class="route-label">TO</span>
+        <strong id="to">Sangareddy</strong>
+    </div>
+</div>
+
+    </div>
+
+        <div class="section-title">
+    <span>OCCUPANCY OVERVIEW</span>
+    <h2>Bus Occupancy</h2>
+</div>
+
+       <div class="metrics">
+
+    <div class="metric-card">
+        <span>👥 TOTAL CAPACITY</span>
+        <strong id="capacity">50</strong>
+        <small>Maximum passengers</small>
+    </div>
+
+    <div class="metric-card">
+        <span>👤 PASSENGERS</span>
+        <strong id="passengers">32</strong>
+        <small>Currently onboard</small>
+
+    </div>
+
+    <div class="metric-card available-card">
+        <span>🪑 AVAILABLE SEATS</span>
+        <strong id="availableSeats">18</strong>
+        <small>Seats remaining</small>
+    </div>
+
+</div> 
+
+        <div class="occupancy-display">
+    <span>Current Occupancy</span>
+    <strong id="occupancy">64%</strong>
+</div>
+
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+
+        <p class="status" id="status">🟢 Seats Available</p>
+
+        <div class="live-status">
+
+    <div class="status-item">
+        <span>🟢 Status</span>
+        <strong>On Route</strong>
+    </div>
+
+    <div class="status-item">
+        <span>🕒 Last Updated</span>
+        <strong id="lastUpdated">Just Now</strong>
+    </div>
+
+    <div class="status-item">
+        <span>📍 Next Stop</span>
+        <strong id="nextStop">Patancheru</strong>
+    </div>
+        <div class="status-item">
+        <span>📍 Current Location</span>
+        <strong id="currentLocation">Hyderabad</strong>
+        <small class="gps-label">🧪 Simulated GPS</small>
+        <div class="route-progress" id="routeProgress">
+    Route progress: Stop 1 of 5
+</div>
+    </div>
+
+</div>
+    <div class="map-section">
+
+    <div class="section-title">
+        <span>ROUTE VISUALIZATION</span>
+        <h2>🗺️ Bus Route Map</h2>
+    </div>
+
+    <div class="map-container" id="mapContainer">
+
+    <div class="map-line"></div>
+
+    <div class="map-stop">
+        <span>🟢</span>
+        <strong>Hyderabad</strong>
+    </div>
+
+    <div class="map-stop">
+        <span>⚪</span>
+        <strong>BHEL</strong>
+    </div>
+
+    <div class="map-stop">
+        <span>⚪</span>
+        <strong>Patancheru</strong>
+    </div>
+
+    <div class="map-stop">
+        <span>⚪</span>
+        <strong>Rudraram</strong>
+    </div>
+
+    <div class="map-stop">
+        <span>⚪</span>
+        <strong>Sangareddy</strong>
+    </div>
+
+</div>
+
+    <p class="map-note">
+        🧪 Demonstration route • Simulated GPS
+    </p>
+
+</div>
+    
+<div class="verification-grid">
+
+    <div class="ai-count-section">
+
+        <div class="panel-header">
+            <span>SYSTEM MONITORING</span>
+            <h2>🤖 Camera Verification</h2>
+        </div>
+
+        <p class="panel-description">
+           AI-assisted passenger estimation
+        </p>
+
+        <strong class="main-count" id="aiCount">0</strong>
+
+       <div class="ai-comparison">
+
+    <div>
+        <span>OFFICIAL TICKET COUNT</span>
+        <strong id="ticketComparison">0</strong>
+    </div>
+
+    <div>
+        <span>VERIFICATION DIFFERENCE</span>
+        <strong id="countDifference">0</strong>
+    </div>
+
+</div>
+
+    </div>
+
+</div>
+
+   
+<div class="camera-section">
+
+    <div class="camera-header">
+        <div>
+            <span>LIVE MONITORING</span>
+            <h2>📷 Passenger Camera</h2>
+        </div>
+
+        <div class="camera-indicator offline">
+    <span></span>
+    Camera Offline
+</div>
+    </div>
+
+    <p class="camera-description">
+        Use the camera to monitor passenger occupancy and verify ticket-based counts.
+    </p>
+
+    <div class="camera-view">
+        <video id="camera" autoplay></video>
+    </div>
+
+    <div class="camera-controls">
+
+        <button class="start-camera-btn" onclick="startCamera()">
+            Start Camera
+        </button>
+
+        <button class="capture-btn" onclick="captureImage()">
+            📸 Capture Image
+        </button>
+
+    </div>
+
+    <canvas id="snapshot"></canvas>
+
+</div>
+
+
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+
+<script src="script.js"></script>
+<footer class="app-footer">
+    <p>🚌 BusTrack | Smart Transit Monitoring</p>
+    <small>Academic Project • Simulated GPS</small>
+</footer>
+</body>   
+</html>
